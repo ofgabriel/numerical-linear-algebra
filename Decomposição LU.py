@@ -11,10 +11,15 @@ ex3 = [[16, 9, 8, 7, 6, 5, 4, 3, 2, 1],
        [2, 3, 4, 5, 6, 7, 8, 9, 14, 9],
        [1, 2, 3, 4, 5, 6, 7, 8, 9, 13], ]
 
-testeReal = [[1.0, 2.0, 2.0], [4.0, 4.0, 2.0], [4.0, 6.0, 4.0]]
-
 
 def resolSist():
+    A = [[1.0, 2.0, 2.0], [4.0, 4.0, 2.0], [4.0, 6.0, 4.0]]  # MATRIZ.
+    B = [3.0, 6.0, 10.0]  # VETOR INDEPENDNENTE.
+    LU = decompLU(A)
+    return backSubst(LU, B)
+
+
+def resolSistSingular():
     A = [[1.0, 2.0, 2.0], [2.0, 4.0, 4.0], [4.0, 6.0, 4.0]]  # MATRIZ.
     B = [3.0, 6.0, 10.0]  # VETOR INDEPENDNENTE.
     LU = decompLU(A)
@@ -72,3 +77,4 @@ def provaReal():
 
 
 print resolSist()
+print resolSistSingular()
