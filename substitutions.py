@@ -21,5 +21,5 @@ def backSubst(LU, B):
         sp = 0
         for j in range(i+1, n+1):
             sp += LU[i][j]*X[j]
-        Y.append((B[i] - sp))
+        Y.append((B[i] - sp)/LU[i][i])
     return X
