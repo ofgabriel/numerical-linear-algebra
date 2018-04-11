@@ -14,7 +14,7 @@ ex3 = [ [16, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 testeReal = [[1.0,2.0,2.0], [4.0,4.0,2.0], [4.0,6.0,4.0]]
 
 def resolSist():
-    A = [[1.0,2.0,2.0], [2.0,4.0,4.0], [4.0,6.0,4.0]] #MATRIZ.
+    A = [[1.0,2.0,2.0], [4.0,4.0,2.0], [4.0,6.0,4.0]] #MATRIZ.
     B = [3.0,6.0,10.0] #VETOR INDEPENDNENTE.
     LU = decompLU(A)
     return backSubst(LU,B)
@@ -53,8 +53,8 @@ def backSubst(LU,B):
     for i in range(n-1,-1,-1):
         sp = 0
         for j in range(i+1,n+1):
-            sp += LU[i][j]*X[j]
-        Y.append((B[i] - sp))
+            sp += (LU[i][j]*X[j])
+        X[i] = ((Y[i] - sp)/LU[i][i])
     return X
 
 def provaReal():
