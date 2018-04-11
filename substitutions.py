@@ -6,7 +6,7 @@ def fwdSubst(LU, B):
         sp = 0
         for j in range(i):
             sp += LU[i][j]*Y[j]
-        Y.append((B[i] - sp))
+        Y.append((B[i] - sp)/LU[i][i])
     return Y
 
 
