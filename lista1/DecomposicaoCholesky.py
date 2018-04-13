@@ -1,6 +1,7 @@
 import sys
 from substitutions import *
 import math
+import numpy as np
 
 
 def resolSistExerc3():
@@ -18,16 +19,17 @@ def resolSistExerc3():
     B = [4.0, 0.0, 8.0, 0.0, 12.0, 0.0, 8.0, 0.0, 4.0, 0.0]
 
     LU = decompCholesky(A)
-    print LU
-    print 'a'
     return backSubst(LU, B)
 
 
 def resolSist():
     A = [[1.0, 0.2, 0.4], [0.2, 1, 0.5], [0.4, 0.5, 1.0]]  # MATRIZ.
     B = [0.6, -0.3, -0.6]  # VETOR INDEPENDNENTE.
-    LU = decompCholesky(A)
-    # return backSubst(LU, B)
+    L = decompCholesky(A)
+    LTranspose = np.transpose(np.array(L))
+    Y = fwdSubst(L, B)
+    X = backSubst(LTranspose, Y)
+    return X
 
 
 def decompCholesky(A):
@@ -50,7 +52,6 @@ def decompCholesky(A):
                 aux += L[i][k]*L[j][k]
             L[j][i] = (A[i][j] - aux)/L[i][i]
 
-    print L
     return L
 
 

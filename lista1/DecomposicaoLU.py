@@ -17,21 +17,21 @@ def resolSistExerc3():
     B = [4.0, 0.0, 8.0, 0.0, 12.0, 0.0, 8.0, 0.0, 4.0, 0.0]
 
     LU = decompLU(A)
-    return backSubst(LU, B)
+    return backSubst(LU, fwdSubst(LU, B))
 
 
 def resolSist():
     A = [[1.0, 2.0, 2.0], [4.0, 4.0, 2.0], [4.0, 6.0, 4.0]]  # MATRIZ.
     B = [3.0, 6.0, 10.0]  # VETOR INDEPENDNENTE.
     LU = decompLU(A)
-    return backSubst(LU, B)
+    return backSubst(LU, fwdSubst(LU, B))
 
 
 def resolSistSingular():
     A = [[1.0, 2.0, 2.0], [2.0, 4.0, 4.0], [4.0, 6.0, 4.0]]  # MATRIZ.
     B = [3.0, 6.0, 10.0]  # VETOR INDEPENDNENTE.
     LU = decompLU(A)
-    return backSubst(LU, B)
+    return backSubst(LU, fwdSubst(LU, B))
 
 
 def decompLU(A):

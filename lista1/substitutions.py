@@ -10,8 +10,7 @@ def fwdSubst(LU, B):
     return Y
 
 
-def backSubst(LU, B):
-    Y = fwdSubst(LU, B)
+def backSubst(LU, Y):
     n = len(LU)-1
     X = []
     for i in range(n+1):
