@@ -8,16 +8,12 @@ def powerMethod(A):
     ld0 = X0[0][0]
     ld1 = Y[0][0]
     X1 = m.multiMS(Y,(1/ld1))
-    print X1
     R = abs(ld1-ld0)/abs(ld1)
-    print R
     while R > tol:
         Y = m.multiMV(A,X1)
-        print Y
         ld0 = ld1
         ld1 = Y[0][0]
         X1 = m.multiMS(Y,(1/ld1))
-        print X1
         R = abs(ld1-ld0)/abs(ld1)
     print ld1
 
