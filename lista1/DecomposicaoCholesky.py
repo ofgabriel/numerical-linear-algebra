@@ -23,7 +23,7 @@ def resolSistExerc3():
 
 
 def resolSist():
-    A = [[1.0, 0.2, 0.4], [0.2, 1, 0.5], [0.4, 0.5, 1.0]]  # MATRIZ.
+    A = [[1.0, 0.2, 0.4], [0.2, 1.0, 0.5], [0.4, 0.5, 1.0]]  # MATRIZ.
     B = [0.6, -0.3, -0.6]  # VETOR INDEPENDNENTE.
     L = decompCholesky(A)
     LTranspose = np.transpose(np.array(L))
@@ -31,8 +31,17 @@ def resolSist():
     X = backSubst(LTranspose, Y)
     return X
 
+def verify(A):
+    n = len(A)
+    for i in range(n):
+        for j in range(n):
+            if A[i][j] == A[j][i]:
+                continue
+            else:
+                sys.exit("ERRO: MATRIZ NAO SIMETRICA!")
 
 def decompCholesky(A):
+    verify(A)
     n = len(A)
     L = []
     for i in range(n):
@@ -44,8 +53,10 @@ def decompCholesky(A):
         aux = 0
         for k in range(0, i):
             aux += math.pow(L[i][k], 2)
-        L[i][i] = math.sqrt(A[i][i] - aux)
-
+        try:
+            L[i][i] = math.sqrt(A[i][i] - aux)
+        except:
+            sys.exit("ERRO: MATRIZ NAO POSITIVA DEFINIDA!")
         for j in range(i+1, n):
             aux = 0
             for k in range(0, i):
