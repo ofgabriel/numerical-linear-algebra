@@ -1,3 +1,6 @@
+import math
+
+
 def jacobi(A):
     X = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
 
@@ -19,6 +22,14 @@ def getMaxAbsItemOutDiagonal(A):
                 if(abs(A[i][j]) > abs(A[maxItem[0]][maxItem[1]])):
                     maxItem = (i, j)
     return maxItem
+
+
+def getPhi(A, maxItem):
+    i, j = maxItem
+    if(A[i][i] == A[j][j]):
+        return math.pi
+    else:
+        return math.atan(2*A[i][j] / (A[i][i] - A[j][j]))/2
 
 
 testeReal = [[1.0, 0.2, 0.0], [0.2, 1.0, 0.5], [0.0, 0.5, 1.0]]
