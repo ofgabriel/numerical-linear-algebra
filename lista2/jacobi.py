@@ -1,3 +1,15 @@
+def jacobi(A):
+    X = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+
+    toleranceThreshold = 0.001
+
+    maxItem = getMaxAbsItemOutDiagonal(A)
+    while A[maxItem[0]][maxItem[1]] > toleranceThreshold:  # while not diagonal
+        A[maxItem[0]][maxItem[1]] = 0
+        print A
+        maxItem = getMaxAbsItemOutDiagonal(A)
+
+
 def getMaxAbsItemOutDiagonal(A):
     maxItem = (0, 1)  # random initial max item
     n = len(A)
@@ -7,3 +19,7 @@ def getMaxAbsItemOutDiagonal(A):
                 if(abs(A[i][j]) > abs(A[maxItem[0]][maxItem[1]])):
                     maxItem = (i, j)
     return maxItem
+
+
+testeReal = [[1.0, 0.2, 0.0], [0.2, 1.0, 0.5], [0.0, 0.5, 1.0]]
+print jacobi(testeReal)
