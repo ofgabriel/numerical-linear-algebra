@@ -6,21 +6,24 @@ def jacobi(A):
 
     toleranceThreshold = 0.001
 
-    maxItem = getMaxAbsItemOutDiagonal(A)
+    maxItem = getMaxItem(A)
     while A[maxItem[0]][maxItem[1]] > toleranceThreshold:  # while not diagonal
         A[maxItem[0]][maxItem[1]] = 0
+        A[maxItem[1]][maxItem[0]] = 0
         print A
-        maxItem = getMaxAbsItemOutDiagonal(A)
+        maxItem = getMaxItem(A)
 
 
-def getMaxAbsItemOutDiagonal(A):
-    maxItem = (0, 1)  # random initial max item
+def getMaxItem(A):
+    """get max absolute item outside
+    diagonal from a simetric matrix"""
+
+    maxItem = (1, 0)  # random initial max item
     n = len(A)
     for i in range(n):
-        for j in range(n):
-            if(i != j):  # excludes elements of diagonal
-                if(abs(A[i][j]) > abs(A[maxItem[0]][maxItem[1]])):
-                    maxItem = (i, j)
+        for j in range(i):
+            if(abs(A[i][j]) > abs(A[maxItem[0]][maxItem[1]])):
+                maxItem = (i, j)
     return maxItem
 
 
