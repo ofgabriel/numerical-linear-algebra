@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 
 def jacobi(A):
@@ -8,10 +9,10 @@ def jacobi(A):
 
     maxItem = getMaxItem(A)
     while A[maxItem[0]][maxItem[1]] > toleranceThreshold:  # while not diagonal
-        A[maxItem[0]][maxItem[1]] = 0
-        A[maxItem[1]][maxItem[0]] = 0
-        print A
         maxItem = getMaxItem(A)
+        print np.matrix(A)
+        print np.matrix(makePMatrix(A, maxItem))
+        break
 
 
 def getMaxItem(A):
@@ -33,6 +34,25 @@ def getPhi(A, maxItem):
         return math.pi
     else:
         return math.atan(2*A[i][j] / (A[i][i] - A[j][j]))/2
+
+
+def makePMatrix(A, maxItem):
+    n = len(A)
+    P = [[0.0 for i in range(n)] for j in range(n)]
+
+    # fills diagonal
+    for i in range(n):
+        P[i][i] = 1
+
+    # fills the rotation
+    i, j = maxItem
+    phi = getPhi(A, maxItem)
+    P[i][i] = math.cos(phi)
+    P[j][j] = math.cos(phi)
+    P[i][j] = math.sin(phi)
+    P[j][i] = -math.sin(phi)
+
+    return P
 
 
 testeReal = [[1.0, 0.2, 0.0], [0.2, 1.0, 0.5], [0.0, 0.5, 1.0]]
