@@ -47,7 +47,7 @@ def getPhi(A, maxItem):
     if(A[i][i] == A[j][j]):
         return math.pi/4
     else:
-        return math.atan(2*A[i][j] / (A[i][i] - A[j][j]))/2
+        return math.atan2(2*A[i][j], (A[i][i] - A[j][j]))/2
 
 
 def makePMatrix(A, maxItem):
