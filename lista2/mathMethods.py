@@ -16,8 +16,8 @@ def multiMM(A, B):
     cols_B = len(B[0])
 
     if cols_A != rows_B:
-        print "Cannot multiply the two matrices. Incorrect dimensions."
-        return
+        raise Exception(
+            "Cannot multiply the two matrices. Incorrect dimensions.")
 
     # Create the result matrix
     # Dimensions would be rows_A x cols_B
