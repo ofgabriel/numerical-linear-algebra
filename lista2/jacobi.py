@@ -4,6 +4,7 @@ import mathMethods
 
 
 def jacobi(A):
+    mathMethods.checkSimetricMatrix(A)
     n = len(A)
     I = [[float(i == j) for j in range(n)] for i in range(n)]
     X = I

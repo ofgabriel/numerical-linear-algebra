@@ -1,3 +1,6 @@
+import sys
+
+
 def multiMV(A, X):
     n = len(A)
     Y = [[0.0] for i in range(n)]
@@ -37,6 +40,16 @@ def multiMS(A, b):
         for j in range(m):
             A[i][j] = A[i][j]*b
     return A
+
+
+def checkSimetricMatrix(A):
+    n = len(A)
+    for i in range(n):
+        for j in range(n):
+            if A[i][j] == A[j][i]:
+                continue
+            else:
+                sys.exit("ERRO: MATRIZ NAO SIMETRICA!")
 
 # testeReal = [[1.0,0.2,0.0],[0.2,1.0,0.5],[0.0,0.5,1.0]]
 # print multiMV(testeReal,[[1.0], [1.4166666666666667], [1.25]])
