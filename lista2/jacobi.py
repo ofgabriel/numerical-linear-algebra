@@ -6,14 +6,24 @@ import mathMethods
 def jacobi(A):
     X = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
 
-    toleranceThreshold = 0.001
+    toleranceThreshold = 0.0001
 
     maxItem = getMaxItem(A)
-    while A[maxItem[0]][maxItem[1]] > toleranceThreshold:  # while not diagonal
+    k = 0
+    while abs(A[maxItem[0]][maxItem[1]]) > toleranceThreshold:  # while not diagonal
+        # print k
+        # k = k+1
+        P = makePMatrix(A, maxItem)
+        PTranspose = np.transpose(np.array(P))
+        # print 'P'
+        # print np.matrix(P)
+        A = mathMethods.multiMM(PTranspose, mathMethods.multiMM(A, P))
+        X = mathMethods.multiMM(X, PTranspose)
         maxItem = getMaxItem(A)
-        print np.matrix(A)
-        print np.matrix(makePMatrix(A, maxItem))
-        break
+        # print np.matrix(A)
+        # print np.matrix(X)
+
+    return A, X
 
 
 def getMaxItem(A):
@@ -57,4 +67,7 @@ def makePMatrix(A, maxItem):
 
 
 testeReal = [[1.0, 0.2, 0.0], [0.2, 1.0, 0.5], [0.0, 0.5, 1.0]]
-print jacobi(testeReal)
+A, X = jacobi(testeReal)
+
+print np.matrix(A)
+print np.matrix(X)
