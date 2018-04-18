@@ -4,7 +4,9 @@ import mathMethods
 
 
 def jacobi(A):
-    X = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+    n = len(A)
+    I = [[float(i == j) for j in range(n)] for i in range(n)]
+    X = I
 
     toleranceThreshold = 0.0001
 
