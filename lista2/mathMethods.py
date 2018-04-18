@@ -1,4 +1,4 @@
-def multiMV(A,X):
+def multiMV(A, X):
     n = len(A)
     Y = [[0.0] for i in range(n)]
     for i in range(n):
@@ -8,7 +8,29 @@ def multiMV(A,X):
         Y[i][0] = sp
     return Y
 
-def multiMS(A,b):
+
+def multiMM(A, B):
+    rows_A = len(A)
+    cols_A = len(A[0])
+    rows_B = len(B)
+    cols_B = len(B[0])
+
+    if cols_A != rows_B:
+        raise Exception(
+            "Cannot multiply the two matrices. Incorrect dimensions.")
+
+    # Create the result matrix
+    # Dimensions would be rows_A x cols_B
+    C = [[0 for row in range(cols_B)] for col in range(rows_A)]
+
+    for i in range(rows_A):
+        for j in range(cols_B):
+            for k in range(cols_A):
+                C[i][j] += A[i][k] * B[k][j]
+    return C
+
+
+def multiMS(A, b):
     n = len(A)
     m = len(A[0])
     for i in range(n):
