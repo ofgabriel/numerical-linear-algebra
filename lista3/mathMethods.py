@@ -4,10 +4,11 @@ import sys
 def multiMV(A, X):
     # Multiplies the matrix A x X vector.
     n = len(A)
+    m = len(A[0])
     Y = [[0.0] for i in range(n)]
     for i in range(n):
         sp = 0.0
-        for j in range(n):
+        for j in range(m):
             sp += A[i][j]*X[j][0]
         Y[i][0] = sp
     return Y
