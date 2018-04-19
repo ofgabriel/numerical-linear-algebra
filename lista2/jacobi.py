@@ -9,7 +9,7 @@ def jacobi(A):
     I = [[float(i == j) for j in range(n)] for i in range(n)]
     X = I
 
-    toleranceThreshold = 0.0001
+    toleranceThreshold = 0.001
 
     maxItem = getMaxItem(A)
     k = 0
@@ -20,7 +20,7 @@ def jacobi(A):
         PTranspose = np.transpose(np.array(P))
         # print 'P'
         # print np.matrix(P)
-        A = mathMethods.multiMM(PTranspose, mathMethods.multiMM(A, P))
+        A = mathMethods.multiMM(P, mathMethods.multiMM(A, PTranspose))
         X = mathMethods.multiMM(X, PTranspose)
         maxItem = getMaxItem(A)
         # print np.matrix(A)
