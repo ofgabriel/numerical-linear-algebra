@@ -1,12 +1,12 @@
 def fwdSubst(LU, B):
     n = len(LU)
     Y = []
-    Y.append(B[0]/LU[0][0])
+    Y.append(B[0])
     for i in range(1, n):
         sp = 0
         for j in range(i):
             sp += LU[i][j]*Y[j]
-        Y.append((B[i] - sp)/LU[i][i])
+        Y.append((B[i] - sp))
     return Y
 
 

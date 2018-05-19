@@ -13,4 +13,10 @@ def regLin(X,Y):
 
     print 'Coef. Angular = ' + str(B[1][0]) + ', Coef. Linear = ' + str(B[0][0])
 
-print regLin([[1.00],[2.00],[3.00]],[[2.00],[3.50],[6.50]])
+def testeReglin(X):
+    for i in range(len(X)):
+        X[i].append(2.38698300737*X[i][0] + 12.2376723309)
+    print X
+
+print regLin([[-2.70],[-1.00],[0.00],[1.0],[1.60],[3.10]],[[6.00],[9.20],[12.00],[15.00],[17.00],[19.00]])
+print testeReglin([[-2.70],[-1.00],[0.00],[1.0],[1.60],[3.10]])
