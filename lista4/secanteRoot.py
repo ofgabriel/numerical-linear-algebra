@@ -5,9 +5,9 @@ def secante(x0,tol,niter):
     dx = 0.001
     x = []
     x.extend([x0,x0+dx])
-    fa = one(x[0])
+    fa = two(x[0])
     for k in range(1,niter):
-        fi = one(x[k])
+        fi = two(x[k])
         xk = x[k] - fi*(x[k]-x[k-1])/(fi-fa)
         x.append(xk)
         tolk = abs(x[k+1]-x[k])
@@ -19,4 +19,4 @@ def secante(x0,tol,niter):
             fa = fi
     print('Convergencia nao atingida.')
 
-print secante(100000,5*10**-4,10)
+print secante(-2,5*10**-4,10)
