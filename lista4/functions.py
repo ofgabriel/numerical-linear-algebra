@@ -35,3 +35,9 @@ def dif_two(x):
     dx = 1**-10
     dy = two(x+dx)
     return (dy - y)/dx
+
+def dif(fun,x):
+    y = fun(x)
+    dx = 1**-10
+    dy = fun(x+dx)
+    return (dy - y)/dx
