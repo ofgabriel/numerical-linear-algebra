@@ -70,3 +70,18 @@ def jacobianMatrix(funcs, X):
         for j in range(len(X)):
             J[i][j] = partDerivative(funcs[i], X, j)
     return J
+
+def multiMV(A, X):
+    # Multiplies the matrix A x X vector.
+    n = len(A)
+    m = len(A[0])
+    Y = [None for i in range(n)]
+    for i in range(n):
+        sp = 0.0
+        for j in range(m):
+            sp += A[i][j]*X[j]
+        Y[i] = sp
+    return Y
+
+def norma(X):
+    return sqrt(sum([x**2 for x in X]))
