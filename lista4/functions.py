@@ -85,3 +85,18 @@ def multiMV(A, X):
 
 def norma(X):
     return sqrt(sum([x**2 for x in X]))
+
+def subtractVetors(A, B):
+    if(len(A) != len(B)):
+        print "Subtracting vectors of different size"
+        sys.exit()
+    return [A[i]-B[i] for i in range(len(A))]
+
+def sumVetors(A, B):
+    if(len(A) != len(B)):
+        print "Summing vectors of different size"
+        sys.exit()
+    return [A[i]+B[i] for i in range(len(A))]
+
+def multVectorScalar(B, x):
+    return [B[i]*x for i in range(len(B))]

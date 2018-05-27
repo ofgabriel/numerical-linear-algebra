@@ -15,8 +15,9 @@ def newtonSystem(X, tol, niter, funcs):
         F = [func(X) for func in funcs]
         print 'F: ' + str(F)
         deltaX = resolveSystem(J, F)
+        deltaX = multVectorScalar(deltaX, -1)
         print 'deltaX: ' + str(deltaX)
-        X = [X[i]-deltaX[i] for i in range(len(X))]
+        X = sumVetors(X, deltaX)
         diff = norma(deltaX)/norma(X)
         if(diff < tol):
             print "X: "
