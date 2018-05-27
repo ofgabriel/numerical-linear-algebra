@@ -1,5 +1,7 @@
 from functions import *
 import sys
+sys.path.append('../lista1/')
+from DecomposicaoLU import resolveSystem
 
 tol = 5*10**-4
 niter = 10
@@ -12,9 +14,9 @@ def newtonSystem(X, tol, niter, funcs):
         print 'J: ' + str(J)
         F = [func(X) for func in funcs]
         print 'F: ' + str(F)
-        deltaX = multiMV(J, F)
+        deltaX = resolveSystem(J, F)
         print 'deltaX: ' + str(deltaX)
-        X = [X[i]+deltaX[i] for i in range(len(X))]
+        X = [X[i]-deltaX[i] for i in range(len(X))]
         diff = norma(deltaX)/norma(X)
         if(diff < tol):
             print "X: "
