@@ -1,42 +1,7 @@
 from functions import *
-import sys
-sys.path.append('../lista1/')
-from DecomposicaoLU import resolveSystem
-sys.path.append('../lista2/')
-from mathMethods import multiMM, multiMS
 
 tol = 5*10**-4
 niter = 1000
-
-# funcs : vetor of functions
-# X     : vetor of initial values for the funcs params
-def broydenSystem(X, tol, niter, funcs):
-    J = jacobianMatrix(funcs, X)
-    #print 'J: ' + str(J)
-    B = J
-    F = [func(X) for func in funcs]
-    for k in range(niter):
-        deltaX = resolveSystem(B, F)
-        deltaX = multVectorScalar(deltaX, -1)
-        X = sumVetors(X, deltaX)
-        diff = norma(deltaX)/norma(X)
-        if(diff < tol):
-            print "X: "
-            print X
-            sys.exit()
-        else:
-            F2 = [func(X) for func in funcs]
-            Y = subtractVetors(F2, F)
-            F = F2
-
-            # calculates next B
-            term1 = subtractVetors(Y, multiMV(B, deltaX))
-            term2 = multiMM(vector2matrix(term1), transpose(vector2matrix(deltaX)))
-            term3 = 1/multiMV(transpose(vector2matrix(X)), X)[0]
-            term4 = multiMS(term2, term3)
-            B = sumMatrix(B, term4)
-
-    print("Convergencia nao atingida.")
 
 def func1(X):
     return X[0] + 2*X[1] - 2
