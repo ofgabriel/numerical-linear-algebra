@@ -100,3 +100,14 @@ def sumVetors(A, B):
 
 def multVectorScalar(B, x):
     return [B[i]*x for i in range(len(B))]
+
+def transpose(A):
+    return [[A[j][i] for j in range(len(A))] for i in range(len(A[0]))]
+
+def vector2matrix(A):
+    return [[A[i]] for i in range(len(A))]
+
+def sumMatrix(A, B):
+    if(len(A) != len(B)) or (len(A[0]) != len(B[0])):
+        print "Summing matrices of different sizes"
+    return [[A[i][j]+B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
