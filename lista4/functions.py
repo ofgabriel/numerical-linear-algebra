@@ -142,9 +142,7 @@ def broydenSystem(X, tol, niter, funcs):
             term3 = 1/multiMV(transpose(vector2matrix(X)), X)[0]
             term4 = multiMS(term2, term3)
             B = sumMatrix(B, term4)
-
     print("Convergencia nao atingida.")
-    sys.exit()
 
 # funcs : vetor of functions
 # X     : vetor of initial values for the funcs params
@@ -163,4 +161,3 @@ def newtonSystem(X, tol, niter, funcs):
             return X
 
     print("Convergencia nao atingida.")
-    sys.exit()
