@@ -59,7 +59,6 @@ def decompLU(A):
             except:
                 sys.exit("ERRO: MATRIZ SINGULAR")
         for j in range(k+1, n):
-            print j
             for i in range(k+1, n):
                 A[i][j] = A[i][j]-A[i][k]*A[k][j]
     return A
@@ -73,6 +72,10 @@ def provaReal():
     else:
         return "C'est fou"
 
+def resolveSystem(A, B):
+    LU = decompLU(A)
+    return backSubst(LU, fwdSubst(LU, B))
+
 # print np.matrix(decompLU(A))
 
-print resolSist()
+# print resolSist()
