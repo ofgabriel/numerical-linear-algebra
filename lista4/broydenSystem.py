@@ -16,7 +16,6 @@ def broydenSystem(X, tol, niter, funcs):
     B = J
     F = [func(X) for func in funcs]
     for k in range(niter):
-        print k
         deltaX = resolveSystem(B, F)
         deltaX = multVectorScalar(deltaX, -1)
         X = sumVetors(X, deltaX)
@@ -30,10 +29,9 @@ def broydenSystem(X, tol, niter, funcs):
             Y = subtractVetors(F2, F)
             F = F2
 
+            # calculates next B
             term1 = subtractVetors(Y, multiMV(B, deltaX))
-            #print 'term1' + str(term1)
             term2 = multiMM(vector2matrix(term1), transpose(vector2matrix(deltaX)))
-            #print 'term2'+ str(term2)
             term3 = 1/multiMV(transpose(vector2matrix(X)), X)[0]
             term4 = multiMS(term2, term3)
             B = sumMatrix(B, term4)
@@ -46,10 +44,8 @@ def func1(X):
 def func2(X):
     return X[0]**2 + 4*(X[1]**2) -4
 
-X = [2, 3]
-funcs = [func1, func2]
-print func1([37.85927729651792, -17.92963864825896])
-print func2([37.85927729651792, -17.92963864825896])
+#X = [2, 3]
+#funcs = [func1, func2]
 #broydenSystem(X, tol, niter, funcs)
 
 def func1Lista(X):
@@ -61,6 +57,6 @@ def func2Lista(X):
 def func3Lista(X):
     return X[0]**3 - X[1] + X[2] - 1
 
-#X = [1, 2, 3]
-#funcsLista = [func1Lista, func2Lista, func3Lista]
-#broydenSystem(X, tol, niter, funcsLista)
+X = [1, 2, 3]
+funcsLista = [func1Lista, func2Lista, func3Lista]
+broydenSystem(X, tol, niter, funcsLista)

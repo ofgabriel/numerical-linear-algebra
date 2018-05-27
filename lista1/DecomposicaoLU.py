@@ -1,6 +1,7 @@
 import sys
 from substitutions import *
 import numpy as np
+from copy import deepcopy
 
 A = [[13.5, 7.5, 4.5, 1.5, 3.0, 1.5],
     [7.5, 15.0, 7.5, 4.5, 1.5, 3.0],
@@ -73,7 +74,8 @@ def provaReal():
         return "C'est fou"
 
 def resolveSystem(A, B):
-    LU = decompLU(A)
+    Acopy = deepcopy(A)
+    LU = decompLU(Acopy)
     return backSubst(LU, fwdSubst(LU, B))
 
 # print np.matrix(decompLU(A))
