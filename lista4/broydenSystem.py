@@ -9,9 +9,9 @@ def func1(X):
 def func2(X):
     return X[0]**2 + 4*(X[1]**2) -4
 
-#X = [2, 3]
-#funcs = [func1, func2]
-#broydenSystem(X, tol, niter, funcs)
+X = [2, 3]
+funcs = [func1, func2]
+print 'X: ' + str(broydenSystem(X, tol, niter, funcs))
 
 def func1Lista(X):
     return 16*(X[0]**4) + 16*(X[1]**4) + (X[2]**4) - 16
@@ -24,4 +24,4 @@ def func3Lista(X):
 
 X = [1, 2, 3]
 funcsLista = [func1Lista, func2Lista, func3Lista]
-broydenSystem(X, tol, niter, funcsLista)
+print 'X: ' + str(broydenSystem(X, tol, niter, funcsLista))

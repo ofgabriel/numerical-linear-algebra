@@ -130,9 +130,7 @@ def broydenSystem(X, tol, niter, funcs):
         X = sumVetors(X, deltaX)
         diff = norma(deltaX)/norma(X)
         if(diff < tol):
-            print "X: "
-            print X
-            sys.exit()
+            return X
         else:
             F2 = [func(X) for func in funcs]
             Y = subtractVetors(F2, F)
@@ -146,23 +144,23 @@ def broydenSystem(X, tol, niter, funcs):
             B = sumMatrix(B, term4)
 
     print("Convergencia nao atingida.")
+    sys.exit()
 
 # funcs : vetor of functions
 # X     : vetor of initial values for the funcs params
 def newtonSystem(X, tol, niter, funcs):
     for k in range(niter):
         J = jacobianMatrix(funcs, X)
-        print 'J: ' + str(J)
+        #print 'J: ' + str(J)
         F = [func(X) for func in funcs]
-        print 'F: ' + str(F)
+        #print 'F: ' + str(F)
         deltaX = resolveSystem(J, F)
         deltaX = multVectorScalar(deltaX, -1)
-        print 'deltaX: ' + str(deltaX)
+        #print 'deltaX: ' + str(deltaX)
         X = sumVetors(X, deltaX)
         diff = norma(deltaX)/norma(X)
         if(diff < tol):
-            print "X: "
-            print X
-            sys.exit()
+            return X
 
     print("Convergencia nao atingida.")
+    sys.exit()
