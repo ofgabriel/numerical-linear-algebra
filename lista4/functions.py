@@ -161,3 +161,21 @@ def newtonSystem(X, tol, niter, funcs):
             return X
 
     print("Convergencia nao atingida.")
+
+def leastSquareNL(B, tol, niter, funcs):
+    for k in range(niter):
+        J = jacobianMatrix(funcs, B)
+        JTranspose = transpose(J)
+        F = [func(B) for func in funcs]
+        deltaB = resolveSystem(
+            multiMM(JTranspose, J),
+            multiMV(JTranspose, F)
+        )
+        deltaB = multVectorScalar(deltaB, -1)
+        #print 'deltaB: ' + str(deltaB)
+        B = sumVetors(B, deltaB)
+        diff = norma(deltaB)/norma(B)
+        if(diff < tol):
+            return B
+
+    print("Convergencia nao atingida.")
