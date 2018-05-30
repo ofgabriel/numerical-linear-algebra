@@ -8,4 +8,4 @@ tI = 0.0
 funcTIResult = 0
 tF = 1.0
 
-print 'result: ' + str(integral(funcDifX, deltaT, tI, funcTIResult, tF))
+print 'result: ' + str(integral(INTEGRAL_METHOD.EULER, funcDifX, deltaT, tI, funcTIResult, tF))
