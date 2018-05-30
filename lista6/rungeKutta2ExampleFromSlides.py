@@ -8,4 +8,4 @@ tI = 0.0
 funcTIResult = 0
 tF = 1.0
 
-print 'Euler result: ' + str(integral(INTEGRAL_METHOD.RUNGE_KUTTA_2, funcDifX, deltaT, tI, funcTIResult, tF))
+print 'result: ' + str(integral(INTEGRAL_METHOD.RUNGE_KUTTA_2, funcDifX, deltaT, tI, funcTIResult, tF))
