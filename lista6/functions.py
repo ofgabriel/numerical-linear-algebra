@@ -69,5 +69,4 @@ def integral(method, funcDifX, deltaT, tI, funcTIResult, tF):
     elif(method == INTEGRAL_METHOD.RUNGE_KUTTA_4):
         derivateResults = rungeKutta4(funcDifX, deltaT, tI, funcTIResult, tF)
 
-    print derivateResults
     return derivateResults[-1] - derivateResults[0]
