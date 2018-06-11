@@ -87,6 +87,7 @@ def derivate2ndOrderTaylor(funcDif2X, tI, xI, difXI, deltaT, tF):
         dif2X = funcDif2X(t, xResults[i-1], lastDifX)
         difX = lastDifX + dif2X*deltaT
         xResults[i] = xResults[i-1] + lastDifX*deltaT + dif2X*0.5*(deltaT**2)
+        lastDifX = difX
     return xResults
 
 
