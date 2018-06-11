@@ -1,7 +1,7 @@
 ﻿from functions import *
 
 def funcDif2X(t, X, difX):
-    return (-1)*9.8 - difX*abs(difX)
+    return (-1)*9.80665 - difX*abs(difX)
 
 deltaT = 0.1
 tI = 0.0
