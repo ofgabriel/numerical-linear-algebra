@@ -70,3 +70,35 @@ def integral(method, funcDifX, deltaT, tI, funcTIResult, tF):
         derivateResults = rungeKutta4(funcDifX, deltaT, tI, funcTIResult, tF)
 
     return derivateResults[-1] - derivateResults[0]
+
+def derivate2ndOrderTaylor(funcDif2X, tI, xI, difXI, deltaT, tF):
+    NITER = 1 + (tF-tI)/deltaT
+    if NITER != int(NITER):
+        print 'Exception: supposed to be integer'
+        sys.exit()
+    NITER = int(NITER)
+
+    xResults = [None for i in range(NITER)]
+    xResults[0] = xI
+
+    lastDifX = difXI
+    for i in range(1, NITER):
+        t = tI + (i-1)*deltaT
+        dif2X = funcDif2X(t, xResults[i-1], lastDifX)
+        difX = lastDifX + dif2X*deltaT
+        xResults[i] = xResults[i-1] + lastDifX*deltaT + dif2X*0.5*(deltaT**2)
+        lastDifX = difX
+    return xResults
+
+
+INTEGRAL_2_METHOD = enum(TAYLOR=1, RUNGE_KUTTA_NYSTRON=2)
+
+def integral2ndOrder(method, funcDif2X, tI, xI, difXI, deltaT, tF):
+    if(method == INTEGRAL_2_METHOD.TAYLOR):
+        derivateResults = derivate2ndOrderTaylor(funcDif2X, tI, xI, difXI, deltaT, tF)
+    elif(method == INTEGRAL_2_METHOD.RUNGE_KUTTA_NYSTROM):
+        derivateResults = rungeKuttaNystrom(funcDif2X, tI, xI, difXI, deltaT, tF)
+
+    print derivateResults
+
+    return derivateResults[-1] - derivateResults[0]
