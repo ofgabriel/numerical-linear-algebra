@@ -1,4 +1,4 @@
-from functions import *
+﻿from functions import *
 from math import sin, cos
 import matplotlib.pyplot as plt
 
@@ -26,3 +26,9 @@ plt.figure(2)
 plt.plot(pts,rkn,'ro')
 plt.ylabel('Runge Kutta Nystrom')
 plt.show()
+
+file = open('exercicio2.txt', 'w')
+file.write('Pontos' + ' ' + 'Taylor' + ' ' + 'RKN' + '\n')
+for i in range(len(pts)):
+    file.write(str(pts[i]) + ' ' + str(taylor[i]) + ' ' + str(rkn[i]) + '\n')
+file.close()
