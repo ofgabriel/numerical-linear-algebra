@@ -173,3 +173,14 @@ def bissec(a,b,tol,fun):
         else:
             a = x
     return x
+
+def newton(x,tol,niter,fun):
+    for k in range(niter):
+        xk = x - fun(x)/dif(fun,x)
+        #Replace the function and it's diff defined in the fucntions archive.
+        tolk = abs(xk - x)
+        x = xk
+        if tolk < tol:
+            print("Raiz: " + str(xk))
+            sys.exit()
+    print("Convergencia nao atingida.")
