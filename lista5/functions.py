@@ -18,10 +18,13 @@ def quadratura(fun,a,b,np):
     pesos = W.get(np).get("pesos")
     pontos = W.get(np).get("pontos")
     soma = 0
+    interacoes = 0
     for i in range(np):
         soma += fun((a+b+(pontos[i]*abs(b-a)))/2)*pesos[i]
+        interacoes +=1
 
-    return soma*abs(b-a)/2
+    resultado = soma*abs(b-a)/2
+    return('Integracao Quadratura de Gauss: ' + str(resultado) + '\nNumero de iteracoes: ' + str(interacoes)) + '\n'
 
 def polinomial(fun,a,b,np):
     # Integra no intervalo [a,b] com np pontos.
@@ -32,8 +35,10 @@ def polinomial(fun,a,b,np):
     C = [float(b**j-a**j)/j for j in range(1,np+1)]
     pesos = resolveSystem(A,C)
 
+    interacoes = 0
     soma = 0
     for i in range(np):
         soma += fun(pontos[i])*pesos[i]
+        interacoes +=1
 
-    return soma
+    return('Integracao Polinomial: ' + str(soma) + '\nNumero de iteracoes: ' + str(interacoes)) + '\n'
