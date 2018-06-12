@@ -163,8 +163,10 @@ def leastSquareNL(B, tol, niter, funcs):
     print("Convergencia nao atingida.")
 
 def bissec(a,b,tol,fun):
+    i = 0
     #Returns the root of a function given an interval [a,b] and a tol.
     while abs(b-a) > tol:
+        i+=1
         x = float(a+b)/2
         f = fun(x)
         #Replace the number of the function defined in the archive.
@@ -172,15 +174,18 @@ def bissec(a,b,tol,fun):
             b = x
         else:
             a = x
+    print('Exec bissec in ' + str(i) + ' interations')
     return x
 
 def newton(x,tol,niter,fun):
+    k = None
     for k in range(niter):
         xk = x - fun(x)/dif(fun,x)
         #Replace the function and it's diff defined in the fucntions archive.
         tolk = abs(xk - x)
         x = xk
         if tolk < tol:
+            print('Exec newton in ' + str(k) + ' interations')
             print("Raiz: " + str(xk))
             sys.exit()
     print("Convergencia nao atingida.")
