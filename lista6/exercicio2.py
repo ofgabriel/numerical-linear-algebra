@@ -1,5 +1,6 @@
 from functions import *
 from math import sin, cos
+import matplotlib.pyplot as plt
 
 def funcDif2Y(t, y, difY):
     return -0.2*difY -y + F(t)
@@ -11,7 +12,17 @@ deltaT = 0.1
 tI = 0.0
 yI = 0
 difYI = 0
-tF = 100.0
+tF = 100
 
-print 'result: ' + str(integral2ndOrder(INTEGRAL_2_METHOD.TAYLOR, funcDif2Y, tI, yI, difYI, deltaT, tF))
-print 'result: ' + str(integral2ndOrder(INTEGRAL_2_METHOD.RUNGE_KUTTA_NYSTROM, funcDif2Y, tI, yI, difYI, deltaT, tF))
+pts = [(yI + deltaT*i) for i in range(0, int(1 + (tF-tI)/deltaT))]
+
+taylor = derivate2ndOrderTaylor(funcDif2Y, tI, yI, difYI, deltaT, tF)
+rkn = rungeKuttaNystrom(funcDif2Y, tI, yI, difYI, deltaT, tF)
+
+plt.figure(1)
+plt.plot(pts,taylor,'ro')
+plt.ylabel('Taylor')
+plt.figure(2)
+plt.plot(pts,rkn,'ro')
+plt.ylabel('Runge Kutta Nystrom')
+plt.show()
