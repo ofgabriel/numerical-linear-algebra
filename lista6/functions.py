@@ -127,6 +127,4 @@ def integral2ndOrder(method, funcDif2X, tI, xI, difXI, deltaT, tF):
     elif(method == INTEGRAL_2_METHOD.RUNGE_KUTTA_NYSTROM):
         derivateResults = rungeKuttaNystrom(funcDif2X, tI, xI, difXI, deltaT, tF)
 
-    print derivateResults
-
     return derivateResults[-1] - derivateResults[0]
