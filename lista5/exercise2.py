@@ -1,4 +1,4 @@
-from quadratura import *
+from functions import *
 import numpy as m
 
 def ex2(x):
@@ -8,4 +8,6 @@ def ex2(x):
 def teste(x):
     return x**2
 
-print quadratura(teste,0,1,2)
+print quadratura(teste,0,1,3)
+
+print polinomial(teste,0,1,2)

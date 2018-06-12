@@ -1,3 +1,7 @@
+import sys
+sys.path.append('../lista1/')
+from DecomposicaoLU import resolveSystem
+
 W = {2:{"pontos": [-0.5773502691896257,0.5773502691896257],"pesos": [1.0,1.0]},
         3:{"pontos": [0.0,-0.7745966692414834,0.7745966692414834],"pesos": [0.8888888888888888,0.5555555555555556,0.5555555555555556]},
         4:{"pontos": [-0.3399810435848563,0.3399810435848563,-0.8611363115940526,0.8611363115940526],"pesos": [0.6521451548625461,0.6521451548625461,0.3478548451374538,0.3478548451374538]},
@@ -8,7 +12,6 @@ W = {2:{"pontos": [-0.5773502691896257,0.5773502691896257],"pesos": [1.0,1.0]},
         9:{"pontos": [0.0,-0.8360311073266358,0.8360311073266358,-0.9681602395076261,0.9681602395076261,-0.3242534234038089,0.3242534234038089,-0.6133714327005904,0.6133714327005904],"pesos": [0.3302393550012598,0.1806481606948574,0.1806481606948574,0.0812743883615744,0.0812743883615744,0.3123470770400029,0.3123470770400029,0.2606106964029354,0.2606106964029354]},
         10:{"pontos": [-0.1488743389816312,0.1488743389816312,-0.4333953941292472,0.4333953941292472,-0.6794095682990244,0.6794095682990244,-0.8650633666889845,0.8650633666889845,-0.9739065285171717,0.9739065285171717],"pesos": [0.2955242247147529,0.2955242247147529,0.2692667193099963,0.2692667193099963,0.2190863625159820,0.2190863625159820,0.1494513491505806,0.1494513491505806,0.0666713443086881,0.0666713443086881]}}
 
-
 def quadratura(fun,a,b,np):
     # Integra no intervalo [a,b] com np pontos.
     # N = (grau + 1)/2
@@ -16,22 +19,21 @@ def quadratura(fun,a,b,np):
     pontos = W.get(np).get("pontos")
     soma = 0
     for i in range(np):
-        soma += fun(((a+b+pontos[i])*abs(b-a))/2)*pesos[i]
-        print soma
+        soma += fun((a+b+(pontos[i]*abs(b-a)))/2)*pesos[i]
 
-    return soma
+    return soma*abs(b-a)/2
 
 def polinomial(fun,a,b,np):
     # Integra no intervalo [a,b] com np pontos.
     d = float(abs(b-a))/(np-1)
 
     pontos = [a+i*d for i in range(np)]
-    A = cria_matriz([[pontos[j]**i for j in range(np)] for i in range(np)])
+    A = [[pontos[j]**i for j in range(np)] for i in range(np)]
     C = [float(b**j-a**j)/j for j in range(1,np+1)]
-    pesos = A.resolve(C)
+    pesos = resolveSystem(A,C)
 
     soma = 0
     for i in range(np):
-        soma += self.funcao(pontos[i])*pesos[i]
+        soma += fun(pontos[i])*pesos[i]
 
     return soma
