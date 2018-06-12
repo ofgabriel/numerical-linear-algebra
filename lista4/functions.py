@@ -174,7 +174,7 @@ def bissec(a,b,tol,fun):
             b = x
         else:
             a = x
-    print('Exec bissec in ' + str(i) + ' interations')
+    print('Exec bissec in ' + str(i) + ' iterations')
     return x
 
 def newton(x,tol,niter,fun):
@@ -185,7 +185,7 @@ def newton(x,tol,niter,fun):
         tolk = abs(xk - x)
         x = xk
         if tolk < tol:
-            print('Exec newton in ' + str(k) + ' interations')
+            print('Exec newton in ' + str(k) + ' iterations')
             print("Raiz: " + str(xk))
             sys.exit()
     print("Convergencia nao atingida.")
