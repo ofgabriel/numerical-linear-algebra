@@ -9,4 +9,9 @@ xI = 0
 difXI = 0
 tF = 1.0
 
-print 'result: ' + str(integral2ndOrder(INTEGRAL_2_METHOD.TAYLOR, funcDif2X, tI, xI, difXI, deltaT, tF))
+print 'result: ' + str(
+    integral2ndOrder(
+        INTEGRAL_2_METHOD.RUNGE_KUTTA_NYSTROM,
+        funcDif2X, tI, xI, difXI, deltaT, tF
+    )
+)
